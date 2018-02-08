@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ai.trueface.demo</string>
+    <string name="face_detection">Face Detection</string>
+    <string name="title_activity_face_detection">FaceDetectionActivity</string>
+    <string name="pick_photo_from_gallery">Pick Photo from Gallery</string>
+    <string name="from_camera">from camera</string>
+    <string name="from_gallery">from gallery</string>
+</resources>
