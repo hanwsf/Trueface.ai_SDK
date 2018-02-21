@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 object Trueface {
@@ -18,29 +19,32 @@ object Trueface {
     var base: String = "https://api.trueface.ai"
     var key: String? = null
 
-    val enroll get() = "${base}/old-enroll"
-    val match get() = "${base}/match"
-
+    @Suppress("unused")
     class Services {
 
         interface EndPoints {
+            // spoof detection
+            @POST("/v1/spdetect")
+            fun spdetect(@Body request: SpoofDetectionRequest): Call<SpoofDetection>
+
+            @POST("/v1/spdetect")
+            fun spoofDetection(@Body request: SpoofDetectionRequest): Call<SpoofDetection>
+
+            // face detection
             @POST("/v1/facedetect")
             fun faceDetection(@Body request: FaceDetectionRequest): Call<FaceDetection>
 
-            @POST("/spdetect")
-            fun spdetect(@Body req: SpoofDetectionRequest): Call<SpoofDetection>
+            @POST("/v1/facedetect?rawlandmarks=true")
+            fun faceDetectionWithLandmarks(@Body request: FaceDetectionRequest): Call<FaceDetection>
 
-            @POST("/spdetect")
-            fun spoofDetection(@Body req: SpoofDetectionRequest): Call<SpoofDetection>
+            // id verify
+            @POST("/v1/idverify")
+            fun idVerify(@Body request: IDVerifyRequest): Call<IDVerify>
 
-            @POST("/old-enroll")
-            fun oldEnroll(@Body req: EnrollRequest): Call<Enroll>
+            // face recognition
+            @POST("/v1/enroll")
+            fun enroll(@Body request: EnrollRequest): Call<Enroll>
 
-            // @POST("/enroll")
-            // Call<Enroll> enroll(@Body EnrollRequest req);
-
-            @POST("/match")
-            fun match(@Body req: MatchRequest): Call<Match>
         }
 
         init {

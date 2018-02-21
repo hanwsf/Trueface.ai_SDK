@@ -15,5 +15,9 @@ class MainActivity : AppCompatActivity() {
         face_detection.setOnClickListener {
             startActivity(Intent(this, FaceDetectionActivity::class.java))
         }
+
+        spoof_detection.setOnClickListener {
+            startActivity(Intent(this, SpoofDetectionActivity::class.java))
+        }
     }
 }

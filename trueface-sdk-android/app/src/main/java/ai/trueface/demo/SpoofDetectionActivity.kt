@@ -1,25 +1,25 @@
 package ai.trueface.demo
 
 import ai.trueface.sdk.Trueface
-import ai.trueface.sdk.models.FaceDetection
-import ai.trueface.sdk.models.FaceDetectionRequest
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_face_detection.*
-import android.content.Intent
+import ai.trueface.sdk.models.SpoofDetection
+import ai.trueface.sdk.models.SpoofDetectionRequest
 import android.app.Activity
+import android.content.Intent
 import android.graphics.BitmapFactory
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
 import android.util.Base64
+import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.activity_spoof_detection.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.google.gson.GsonBuilder
 
-class FaceDetectionActivity : AppCompatActivity() {
+class SpoofDetectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_face_detection)
+        setContentView(R.layout.activity_spoof_detection)
 
         from_gallery.setOnClickListener {
             val code = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
@@ -39,14 +39,14 @@ class FaceDetectionActivity : AppCompatActivity() {
 
             result.text = getString(R.string.processing)
 
-            val request = FaceDetectionRequest(img = base64)
-            val call = Trueface.endPoints?.faceDetection(request = request)
-            call?.enqueue(object : Callback<FaceDetection> {
-                override fun onFailure(call: Call<FaceDetection>?, t: Throwable?) {
+            val request = SpoofDetectionRequest(img = base64)
+            val call = Trueface.endPoints?.spoofDetection(request = request)
+            call?.enqueue(object : Callback<SpoofDetection> {
+                override fun onFailure(call: Call<SpoofDetection>?, t: Throwable?) {
                     result.text = t?.message
                 }
 
-                override fun onResponse(call: Call<FaceDetection>?, response: Response<FaceDetection>?) {
+                override fun onResponse(call: Call<SpoofDetection>?, response: Response<SpoofDetection>?) {
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     val json = gson.toJson(response)
 
@@ -67,5 +67,4 @@ class FaceDetectionActivity : AppCompatActivity() {
             })
         }
     }
-
 }

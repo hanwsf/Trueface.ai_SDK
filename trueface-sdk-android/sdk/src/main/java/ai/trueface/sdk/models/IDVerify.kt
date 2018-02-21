@@ -5,42 +5,42 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class SpoofDetection() : Parcelable {
+class IDVerify() : Parcelable {
 
     @SerializedName("data")
     @Expose
-    var data: SpoofDetectionData? = null
+    private var data: IDVerifyData? = null
 
     @SerializedName("message")
     @Expose
-    var message: String? = null
+    private var message: String? = null
 
     @SerializedName("success")
     @Expose
-    var success: Boolean = false
+    private var success: Boolean? = null
 
     constructor(parcel: Parcel) : this() {
-        data = parcel.readParcelable(SpoofDetectionData::class.java.classLoader)
+        data = parcel.readParcelable(IDVerifyData::class.java.classLoader)
         message = parcel.readString()
-        success = parcel.readByte() != 0.toByte()
+        success = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeParcelable(data, flags)
         parcel.writeString(message)
-        parcel.writeByte(if (success) 1 else 0)
+        parcel.writeValue(success)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<SpoofDetection> {
-        override fun createFromParcel(parcel: Parcel): SpoofDetection {
-            return SpoofDetection(parcel)
+    companion object CREATOR : Parcelable.Creator<IDVerify> {
+        override fun createFromParcel(parcel: Parcel): IDVerify {
+            return IDVerify(parcel)
         }
 
-        override fun newArray(size: Int): Array<SpoofDetection?> {
+        override fun newArray(size: Int): Array<IDVerify?> {
             return arrayOfNulls(size)
         }
     }

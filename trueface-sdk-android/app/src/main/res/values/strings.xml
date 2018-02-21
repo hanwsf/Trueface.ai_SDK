@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">ai.trueface.demo</string>
+    <string name="app_name">Trueface API Demo</string>
     <string name="face_detection">Face Detection</string>
-    <string name="title_activity_face_detection">FaceDetectionActivity</string>
+    <string name="title_activity_face_detection">Face Detection</string>
+    <string name="title_activity_spoof_detection">Spoof Detection</string>
     <string name="pick_photo_from_gallery">Pick Photo from Gallery</string>
     <string name="from_camera">from camera</string>
-    <string name="from_gallery">from gallery</string>
+    <string name="from_gallery">Select photo from gallery</string>
+    <string name="result_success">Result Success</string>
+    <string name="processing">Processing…</string>
+    <string name="spoof_detection">spoof detection</string>
 </resources>

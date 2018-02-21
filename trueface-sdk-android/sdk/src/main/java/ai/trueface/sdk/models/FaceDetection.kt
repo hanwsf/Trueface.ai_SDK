@@ -5,11 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class SpoofDetection() : Parcelable {
-
-    @SerializedName("data")
-    @Expose
-    var data: SpoofDetectionData? = null
+class FaceDetection() : Parcelable {
 
     @SerializedName("message")
     @Expose
@@ -19,28 +15,30 @@ class SpoofDetection() : Parcelable {
     @Expose
     var success: Boolean = false
 
+    @SerializedName("faces")
+    @Expose
+    var faces: List<Face>? = null
+
     constructor(parcel: Parcel) : this() {
-        data = parcel.readParcelable(SpoofDetectionData::class.java.classLoader)
         message = parcel.readString()
-        success = parcel.readByte() != 0.toByte()
+        success = parcel.readValue(Boolean::class.java.classLoader) as Boolean
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeParcelable(data, flags)
         parcel.writeString(message)
-        parcel.writeByte(if (success) 1 else 0)
+        parcel.writeValue(success)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<SpoofDetection> {
-        override fun createFromParcel(parcel: Parcel): SpoofDetection {
-            return SpoofDetection(parcel)
+    companion object CREATOR : Parcelable.Creator<FaceDetection> {
+        override fun createFromParcel(parcel: Parcel): FaceDetection {
+            return FaceDetection(parcel)
         }
 
-        override fun newArray(size: Int): Array<SpoofDetection?> {
+        override fun newArray(size: Int): Array<FaceDetection?> {
             return arrayOfNulls(size)
         }
     }
