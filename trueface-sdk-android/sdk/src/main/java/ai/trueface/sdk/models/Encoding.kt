@@ -10,6 +10,7 @@ class Encoding() : Parcelable {
     @SerializedName("emb0")
     @Expose
     var emb0: String? = null
+
     @SerializedName("emb1")
     @Expose
     var emb1: String? = null

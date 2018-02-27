@@ -7,21 +7,28 @@ import com.google.gson.annotations.SerializedName
 
 class Match() : Parcelable {
 
-    @SerializedName("status")
+    @SerializedName("message")
     @Expose
-    var status: String? = null
-    @SerializedName("resp")
+    var message: String? = null
+
+    @SerializedName("data")
     @Expose
-    var resp: List<Resp>? = null
+    var data: MatchData? = null
+
+    @SerializedName("success")
+    @Expose
+    var success: Boolean = false
 
     constructor(parcel: Parcel) : this() {
-        status = parcel.readString()
-        resp = parcel.createTypedArrayList(Resp)
+        message = parcel.readString()
+        data = parcel.readParcelable(MatchData::class.java.classLoader)
+        success = parcel.readValue(Boolean::class.java.classLoader) as Boolean
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(status)
-        parcel.writeTypedList(resp)
+        parcel.writeString(message)
+        parcel.writeParcelable(data, flags)
+        parcel.writeValue(success)
     }
 
     override fun describeContents(): Int {

@@ -1,33 +1,29 @@
-package ai.trueface.sdk.models
+package ai.trueface.sdk.models.verifications
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class IDVerify() : Parcelable {
+class Verifications() : Parcelable {
 
     @SerializedName("data")
     @Expose
-    var data: IdentifyData? = null
+    var data: List<Data>? = null
 
     @SerializedName("message")
     @Expose
-    var message: String? = null
+    var message: Any? = null
 
     @SerializedName("success")
     @Expose
     var success: Boolean = false
 
     constructor(parcel: Parcel) : this() {
-        data = parcel.readParcelable(IdentifyData::class.java.classLoader)
-        message = parcel.readString()
         success = parcel.readByte() != 0.toByte()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeParcelable(data, flags)
-        parcel.writeString(message)
         parcel.writeByte(if (success) 1 else 0)
     }
 
@@ -35,12 +31,12 @@ class IDVerify() : Parcelable {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<IDVerify> {
-        override fun createFromParcel(parcel: Parcel): IDVerify {
-            return IDVerify(parcel)
+    companion object CREATOR : Parcelable.Creator<Verifications> {
+        override fun createFromParcel(parcel: Parcel): Verifications {
+            return Verifications(parcel)
         }
 
-        override fun newArray(size: Int): Array<IDVerify?> {
+        override fun newArray(size: Int): Array<Verifications?> {
             return arrayOfNulls(size)
         }
     }

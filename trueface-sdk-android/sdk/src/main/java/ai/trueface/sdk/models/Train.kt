@@ -5,15 +5,15 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Enroll() : Parcelable {
+class Train() : Parcelable {
+
+    @SerializedName("data")
+    @Expose
+    var data: TrainData? = null
 
     @SerializedName("message")
     @Expose
     var message: String? = null
-
-    @SerializedName("data")
-    @Expose
-    var data: EnrollData? = null
 
     @SerializedName("success")
     @Expose
@@ -21,13 +21,11 @@ class Enroll() : Parcelable {
 
     constructor(parcel: Parcel) : this() {
         message = parcel.readString()
-        data = parcel.readParcelable(EnrollData::class.java.classLoader)
         success = parcel.readValue(Boolean::class.java.classLoader) as Boolean
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(message)
-        parcel.writeParcelable(data, flags)
         parcel.writeValue(success)
     }
 
@@ -35,13 +33,14 @@ class Enroll() : Parcelable {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Enroll> {
-        override fun createFromParcel(parcel: Parcel): Enroll {
-            return Enroll(parcel)
+    companion object CREATOR : Parcelable.Creator<Train> {
+        override fun createFromParcel(parcel: Parcel): Train {
+            return Train(parcel)
         }
 
-        override fun newArray(size: Int): Array<Enroll?> {
+        override fun newArray(size: Int): Array<Train?> {
             return arrayOfNulls(size)
         }
     }
+
 }

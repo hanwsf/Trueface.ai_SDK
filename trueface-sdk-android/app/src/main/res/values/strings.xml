@@ -9,4 +9,8 @@
     <string name="result_success">Result Success</string>
     <string name="processing">Processing…</string>
     <string name="spoof_detection">spoof detection</string>
+    <string name="title_activity_enroll">EnrollActivity</string>
+    <string name="enroll">Enroll</string>
+    <string name="gallery_multi_select">select up to 10 photos from gallery</string>
+    <string name="enroll_name">enroll name</string>
 </resources>

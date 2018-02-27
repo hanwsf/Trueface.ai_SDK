@@ -9,44 +9,44 @@ class MatchData() : Parcelable {
 
     @SerializedName("emb2_match")
     @Expose
-    var isEmb2Match: Boolean = false
+    var emb2Match: Boolean? = null
 
     @SerializedName("emb0_score")
     @Expose
-    var emb0Score: Double = 0.toDouble()
+    var emb0Score: Double? = null
 
     @SerializedName("emb2_score")
     @Expose
-    var emb2Score: Double = 0.toDouble()
+    var emb2Score: Double? = null
 
     @SerializedName("emb1_score")
     @Expose
-    var emb1Score: Double = 0.toDouble()
+    var emb1Score: Double? = null
 
     @SerializedName("emb1_match")
     @Expose
-    var isEmb1Match: Boolean = false
+    var emb1Match: Boolean? = null
 
     @SerializedName("emb0_match")
     @Expose
-    var isEmb0Match: Boolean = false
+    var emb0Match: Boolean? = null
 
     constructor(parcel: Parcel) : this() {
-        isEmb2Match = parcel.readByte() != 0.toByte()
-        emb0Score = parcel.readDouble()
-        emb2Score = parcel.readDouble()
-        emb1Score = parcel.readDouble()
-        isEmb1Match = parcel.readByte() != 0.toByte()
-        isEmb0Match = parcel.readByte() != 0.toByte()
+        emb2Match = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+        emb0Score = parcel.readValue(Double::class.java.classLoader) as? Double
+        emb2Score = parcel.readValue(Double::class.java.classLoader) as? Double
+        emb1Score = parcel.readValue(Double::class.java.classLoader) as? Double
+        emb1Match = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+        emb0Match = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeByte(if (isEmb2Match) 1 else 0)
-        parcel.writeDouble(emb0Score)
-        parcel.writeDouble(emb2Score)
-        parcel.writeDouble(emb1Score)
-        parcel.writeByte(if (isEmb1Match) 1 else 0)
-        parcel.writeByte(if (isEmb0Match) 1 else 0)
+        parcel.writeValue(emb2Match)
+        parcel.writeValue(emb0Score)
+        parcel.writeValue(emb2Score)
+        parcel.writeValue(emb1Score)
+        parcel.writeValue(emb1Match)
+        parcel.writeValue(emb0Match)
     }
 
     override fun describeContents(): Int {

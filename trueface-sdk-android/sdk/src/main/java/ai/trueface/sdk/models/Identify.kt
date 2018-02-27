@@ -5,39 +5,39 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class IDVerifyRequest() : Parcelable {
+class Identify() : Parcelable {
 
     @SerializedName("id_image")
     @Expose
-    private var idImage: String? = null
+    var idImage: String? = null
 
     @SerializedName("person_image")
     @Expose
-    private var personImage: String? = null
+    var personImage: String? = null
 
     @SerializedName("email")
     @Expose
-    private var email: String? = null
+    var email: String? = null
 
     @SerializedName("first_name")
     @Expose
-    private var firstName: String? = null
+    var firstName: String? = null
 
     @SerializedName("last_name")
     @Expose
-    private var lastName: String? = null
+    var lastName: String? = null
 
     @SerializedName("web_verify")
     @Expose
-    private var webVerify: Boolean = false
+    var webVerify: Boolean = false
 
     @SerializedName("sanctions_search")
     @Expose
-    private var sanctionsSearch: Boolean = false
+    var sanctionsSearch: Boolean = false
 
     @SerializedName("document_verify")
     @Expose
-    private var documentVerify: Boolean = false
+    var documentVerify: Boolean = false
 
     constructor(parcel: Parcel) : this() {
         idImage = parcel.readString()
@@ -45,9 +45,9 @@ class IDVerifyRequest() : Parcelable {
         email = parcel.readString()
         firstName = parcel.readString()
         lastName = parcel.readString()
-        webVerify = parcel.readByte() != 0.toByte()
-        sanctionsSearch = parcel.readByte() != 0.toByte()
-        documentVerify = parcel.readByte() != 0.toByte()
+        webVerify = parcel.readValue(Boolean::class.java.classLoader) as Boolean
+        sanctionsSearch = parcel.readValue(Boolean::class.java.classLoader) as Boolean
+        documentVerify = parcel.readValue(Boolean::class.java.classLoader) as Boolean
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -56,24 +56,23 @@ class IDVerifyRequest() : Parcelable {
         parcel.writeString(email)
         parcel.writeString(firstName)
         parcel.writeString(lastName)
-        parcel.writeByte(if (webVerify) 1 else 0)
-        parcel.writeByte(if (sanctionsSearch) 1 else 0)
-        parcel.writeByte(if (documentVerify) 1 else 0)
+        parcel.writeValue(webVerify)
+        parcel.writeValue(sanctionsSearch)
+        parcel.writeValue(documentVerify)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<IDVerifyRequest> {
-        override fun createFromParcel(parcel: Parcel): IDVerifyRequest {
-            return IDVerifyRequest(parcel)
+    companion object CREATOR : Parcelable.Creator<Identify> {
+        override fun createFromParcel(parcel: Parcel): Identify {
+            return Identify(parcel)
         }
 
-        override fun newArray(size: Int): Array<IDVerifyRequest?> {
+        override fun newArray(size: Int): Array<Identify?> {
             return arrayOfNulls(size)
         }
     }
 
 }
-

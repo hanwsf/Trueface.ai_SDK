@@ -9,10 +9,18 @@ class EnrollData() : Parcelable {
 
     @SerializedName("enrollment_id")
     @Expose
-    var enrollmentId: String? = null
+    private var enrollmentId: String? = null
 
     constructor(parcel: Parcel) : this() {
         enrollmentId = parcel.readString()
+    }
+
+    fun getEnrollmentId(): String? {
+        return enrollmentId
+    }
+
+    fun setEnrollmentId(enrollmentId: String) {
+        this.enrollmentId = enrollmentId
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -32,5 +40,6 @@ class EnrollData() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
 
 }
