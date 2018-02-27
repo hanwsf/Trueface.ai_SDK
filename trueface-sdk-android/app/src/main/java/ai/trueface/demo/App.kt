@@ -8,7 +8,7 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Trueface.key = "mKQSrf7vQ29Y1G0lV41aL2espzYqjt3V7kw3JaVv"
+        Trueface.key = ""
         Trueface.Services()
 
         CodeProcessor.init(this)
