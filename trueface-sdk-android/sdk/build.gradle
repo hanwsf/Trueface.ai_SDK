@@ -2,19 +2,17 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-/*
 androidExtensions {
     experimental = true
 }
-*/
 
 task deleteJar(type: Delete) {
-    delete 'libs/logmanagementlib.jar'
+    delete 'libs/trueface-sdk.jar'
 }
 
 task createJar(type: Copy) {
     from('build/intermediates/bundles/release/')
-    into('libs/jars/')
+    into('libs/')
     include('classes.jar')
     rename('classes.jar', 'trueface-sdk.jar')
 }
@@ -42,6 +40,18 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
@@ -54,12 +64,26 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     // compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.1'
+    compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 
     // compile 'com.github.kittinunf.fuel:fuel-rxjava:1.11.0'
     // compile 'com.github.kittinunf.fuel:fuel-gson:1.11.0'
+
+    // acuant
+    compile 'com.acuant.mobilesdk:acuantMobileSDK:4.8.1'
+    implementation('com.microblink:pdf417.mobi:6.4.0@aar') {
+        transitive = true
+    }
+    compile ('com.android.support:appcompat-v7:26+')
+    compile ('com.google.code.gson:gson:2.8')
+    compile ('com.squareup.okhttp3:okhttp:3.8.0')
+    compile ('org.jmrtd:jmrtd:0.5.6')
+    compile ('org.ejbca.cvc:cert-cvc:1.4.3')
+    compile ('com.madgag.spongycastle:prov:1.54.0.0')
+    compile ('net.sf.scuba:scuba-sc-android:0.0.9')
 }
 repositories {
     mavenCentral()

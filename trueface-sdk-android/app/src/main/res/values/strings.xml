@@ -13,4 +13,5 @@
     <string name="enroll">Enroll</string>
     <string name="gallery_multi_select">select up to 10 photos from gallery</string>
     <string name="enroll_name">enroll name</string>
+    <string name="scan_document">Scan Document</string>
 </resources>

@@ -6,9 +6,24 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application>
+        <activity android:name=".idverify.ScanActivity" />
+        <activity android:name=".idverify.ImageConformationActivity" />
+        <activity android:name=".idverify.RegionList" />
+        <activity android:name=".idverify.ShowDataActivity" />
+        <activity android:name=".idverify.NFCConfirmationActivity" />
+        <activity android:name=".idverify.NFCResultActivity" />
+
+        <activity android:name="com.acuant.mobilesdk.detect.CameraCardDetectManual" />
+        <activity android:name="com.acuant.mobilesdk.detect.PDF417.CameraPDF417" />
+        <activity android:name="com.acuant.mobilesdk.detect.Camera2CardDetectManual" />
+        <activity android:name="com.acuant.mobilesdk.detect.Camera2FacialRecognitionManual" />
     </application>
 
 </manifest>
