@@ -864,11 +864,15 @@ public class ScanActivity extends Activity implements WebServiceListener, CardCr
             stream = new ByteArrayOutputStream();
             back_bitmap.compress(Bitmap.CompressFormat.JPEG, 85, stream);
             backCard = stream.toByteArray();
+        } else {
+            backCard = null;
         }
 
         Intent data = new Intent();
         data.putExtra("front_bitmap", frontCard);
         data.putExtra("back_bitmap", backCard);
+        data.putExtra("region", DataContext.getInstance().getCardRegion());
+        data.putExtra("type", scanModel.getCurrentOptionType());
         setResult(RESULT_OK, data);
         finish();
     }

@@ -5,6 +5,24 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+object DocumentType {
+    const val ID = 0
+    const val DL = 0
+    const val Passports = 1
+    const val Medical = 2
+}
+
+object DocumentRegion {
+    const val USA = 0
+    const val Canada = 1
+    const val America = 2
+    const val Europe = 3
+    const val Australia = 4
+    const val Asia = 5
+    const val General = 6
+    const val Africa = 7
+}
+
 class IDVerifyRequest() : Parcelable {
 
     @SerializedName("id_image")
@@ -39,6 +57,14 @@ class IDVerifyRequest() : Parcelable {
     @Expose
     private var documentVerify: Boolean = false
 
+    @SerializedName("document_type")
+    @Expose
+    private var documentType: Int = -1
+
+    @SerializedName("document_region")
+    @Expose
+    private var documentRegion: Int = -1
+
     constructor(parcel: Parcel) : this() {
         idImage = parcel.readString()
         personImage = parcel.readString()
@@ -48,6 +74,8 @@ class IDVerifyRequest() : Parcelable {
         webVerify = parcel.readByte() != 0.toByte()
         sanctionsSearch = parcel.readByte() != 0.toByte()
         documentVerify = parcel.readByte() != 0.toByte()
+        documentType = parcel.readInt()
+        documentRegion = parcel.readInt()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -59,6 +87,8 @@ class IDVerifyRequest() : Parcelable {
         parcel.writeByte(if (webVerify) 1 else 0)
         parcel.writeByte(if (sanctionsSearch) 1 else 0)
         parcel.writeByte(if (documentVerify) 1 else 0)
+        parcel.writeInt(documentType)
+        parcel.writeInt(documentRegion)
     }
 
     override fun describeContents(): Int {
