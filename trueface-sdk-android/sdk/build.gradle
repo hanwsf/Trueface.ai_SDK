@@ -6,22 +6,11 @@ androidExtensions {
     experimental = true
 }
 
-task deleteJar(type: Delete) {
-    delete 'libs/trueface-sdk.jar'
-}
-
-task createJar(type: Copy) {
-    from('build/intermediates/bundles/release/')
-    into('libs/')
-    include('classes.jar')
-    rename('classes.jar', 'trueface-sdk.jar')
-}
-
-createJar.dependsOn(deleteJar, build)
-
 android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
+
+    publishNonDefault true
 
     defaultConfig {
         minSdkVersion 18
