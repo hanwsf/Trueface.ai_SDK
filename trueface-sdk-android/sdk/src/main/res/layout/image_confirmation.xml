@@ -26,14 +26,14 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_launcher" android:contentDescription="titleImg"/>
+                android:contentDescription="titleImg"/>
             <ImageView
                 android:id="@+id/cropImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_launcher" android:contentDescription="CropImage"/>
+                android:contentDescription="CropImage"/>
         </LinearLayout>
         <LinearLayout android:orientation="vertical"
             android:layout_width="match_parent" android:layout_height="wrap_content"

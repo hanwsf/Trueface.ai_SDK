@@ -169,7 +169,7 @@ public class ScanActivity extends Activity implements WebServiceListener, CardCr
     }
 
     private void initializeSDK() {
-        String licenseKey = "";//Set license key here
+        String licenseKey = "E8C02290C173";//Set license key here
         // load the controller instance
         Util.lockScreen(this);
 
