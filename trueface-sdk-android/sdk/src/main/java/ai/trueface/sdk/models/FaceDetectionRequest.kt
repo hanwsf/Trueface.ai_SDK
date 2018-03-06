@@ -3,9 +3,18 @@ package ai.trueface.sdk.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class FaceDetectionRequest(internal val img: String) : Parcelable {
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 
-    constructor(parcel: Parcel) : this(parcel.readString())
+class FaceDetectionRequest() : Parcelable {
+
+    @SerializedName("img")
+    @Expose
+    var img: String? = null
+
+    constructor(parcel: Parcel) : this() {
+        img = parcel.readString()
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(img)
@@ -24,4 +33,5 @@ class FaceDetectionRequest(internal val img: String) : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
 }

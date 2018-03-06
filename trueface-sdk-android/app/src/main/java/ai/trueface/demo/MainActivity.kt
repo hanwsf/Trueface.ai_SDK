@@ -1,6 +1,8 @@
 package ai.trueface.demo
 
 import ai.trueface.sdk.idverify.ScanActivity
+import ai.trueface.sdk.models.FaceDetectionRequest
+import ai.trueface.sdk.models.IDVerifyRequest
 import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -42,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 if (back.isNotEmpty()) {
                     backBitmap.setImageBitmap(BitmapFactory.decodeByteArray(back,0, back.size))
                 }
-
             }
         }
     }

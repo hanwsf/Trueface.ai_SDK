@@ -27,43 +27,43 @@ class IDVerifyRequest() : Parcelable {
 
     @SerializedName("id_image")
     @Expose
-    private var idImage: String? = null
+    var idImage: String? = null
 
     @SerializedName("person_image")
     @Expose
-    private var personImage: String? = null
+    var personImage: String? = null
 
     @SerializedName("email")
     @Expose
-    private var email: String? = null
+    var email: String? = null
 
     @SerializedName("first_name")
     @Expose
-    private var firstName: String? = null
+    var firstName: String? = null
 
     @SerializedName("last_name")
     @Expose
-    private var lastName: String? = null
+    var lastName: String? = null
 
     @SerializedName("web_verify")
     @Expose
-    private var webVerify: Boolean = false
+    var webVerify: Boolean = false
 
     @SerializedName("sanctions_search")
     @Expose
-    private var sanctionsSearch: Boolean = false
+    var sanctionsSearch: Boolean = false
 
     @SerializedName("document_verify")
     @Expose
-    private var documentVerify: Boolean = false
+    var documentVerify: Boolean = false
 
     @SerializedName("document_type")
     @Expose
-    private var documentType: Int = -1
+    var documentType: Int = -1
 
     @SerializedName("document_region")
     @Expose
-    private var documentRegion: Int = -1
+    var documentRegion: Int = -1
 
     constructor(parcel: Parcel) : this() {
         idImage = parcel.readString()
