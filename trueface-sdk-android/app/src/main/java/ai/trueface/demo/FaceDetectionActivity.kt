@@ -39,9 +39,11 @@ class FaceDetectionActivity : AppCompatActivity() {
 
             result.text = getString(R.string.processing)
 
-            val request = FaceDetectionRequest(img = base64)
-            val call = Trueface.endPoints?.faceDetection(request = request)
-            call?.enqueue(object : Callback<FaceDetection> {
+            val request = FaceDetectionRequest()
+            request.img = base64
+
+            val call = Trueface.endPoints.faceDetection(request = request)
+            call.enqueue(object : Callback<FaceDetection> {
                 override fun onFailure(call: Call<FaceDetection>?, t: Throwable?) {
                     result.text = t?.message
                 }

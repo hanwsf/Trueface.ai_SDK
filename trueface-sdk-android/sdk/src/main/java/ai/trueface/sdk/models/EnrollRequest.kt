@@ -8,6 +8,10 @@ import com.google.gson.annotations.SerializedName
 
 class EnrollRequest() : Parcelable {
 
+    @SerializedName("name")
+    @Expose
+    var name: String? = null
+
     @SerializedName("img0")
     @Expose
     var img0: String? = null
@@ -57,6 +61,7 @@ class EnrollRequest() : Parcelable {
     var enrollmentId: String? = null
 
     constructor(parcel: Parcel) : this() {
+        name = parcel.readString()
         img0 = parcel.readString()
         img1 = parcel.readString()
         img2 = parcel.readString()
@@ -72,6 +77,7 @@ class EnrollRequest() : Parcelable {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
         parcel.writeString(img0)
         parcel.writeString(img1)
         parcel.writeString(img2)

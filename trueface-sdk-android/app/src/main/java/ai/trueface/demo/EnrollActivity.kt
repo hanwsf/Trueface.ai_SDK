@@ -40,9 +40,12 @@ class EnrollActivity : AppCompatActivity() {
 
             result.text = getString(R.string.processing)
 
-            val request = EnrollRequest(img0 = base64, name = enroll_name.text.toString())
-            val call = Trueface.endPoints?.enroll(request = request)
-            call?.enqueue(object : Callback<Enroll> {
+            val request = EnrollRequest()
+            request.name = enroll_name.text.toString()
+            request.img0 = base64
+
+            val call = Trueface.endPoints.enroll(request = request)
+            call.enqueue(object : Callback<Enroll> {
                 override fun onFailure(call: Call<Enroll>?, t: Throwable?) {
                     result.text = t?.message
                 }

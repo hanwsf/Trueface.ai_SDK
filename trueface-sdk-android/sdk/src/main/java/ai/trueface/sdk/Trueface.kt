@@ -14,7 +14,7 @@ import retrofit2.http.*
 
 object Trueface {
 
-    var endPoints: Services.EndPoints? = null
+    lateinit var endPoints: Services.EndPoints
 
     var base: String = "https://api.trueface.ai"
     var key: String? = null

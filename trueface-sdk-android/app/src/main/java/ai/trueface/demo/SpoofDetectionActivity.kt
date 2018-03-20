@@ -39,9 +39,11 @@ class SpoofDetectionActivity : AppCompatActivity() {
 
             result.text = getString(R.string.processing)
 
-            val request = SpoofDetectionRequest(img = base64)
-            val call = Trueface.endPoints?.spoofDetection(request = request)
-            call?.enqueue(object : Callback<SpoofDetection> {
+            val request = SpoofDetectionRequest()
+            request.img = base64
+
+            val call = Trueface.endPoints.spoofDetection(request = request)
+            call.enqueue(object : Callback<SpoofDetection> {
                 override fun onFailure(call: Call<SpoofDetection>?, t: Throwable?) {
                     result.text = t?.message
                 }
