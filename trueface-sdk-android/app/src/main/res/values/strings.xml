@@ -14,4 +14,5 @@
     <string name="gallery_multi_select">select up to 10 photos from gallery</string>
     <string name="enroll_name">enroll name</string>
     <string name="scan_document">Scan Document</string>
+    <string name="spoof_detection_java">spoof detection (java)</string>
 </resources>

@@ -33,6 +33,7 @@
             android:name=".EnrollActivity"
             android:label="@string/title_activity_enroll"
             android:screenOrientation="portrait" />
+        <activity android:name=".SpActivity"></activity>
     </application>
 
 </manifest>

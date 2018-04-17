@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SpoofDetectionActivity::class.java))
         }
 
+        spoof_detection_java.setOnClickListener {
+            startActivity(Intent(this, SpActivity::class.java))
+        }
+
         enroll.setOnClickListener {
             startActivity(Intent(this, EnrollActivity::class.java))
         }
